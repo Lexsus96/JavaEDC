@@ -12,8 +12,6 @@ public class PersonInsertionSort implements PersonSortable {
                 list.set(j + 1, list.get(j));
                 j--;
             }
-            // в этой точке мы вышли, так что j так же -1
-            // или в первом элементе, где текущий >= a[j]
             list.set(j + 1, current);
         }
     }
