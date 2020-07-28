@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class NRandoms {
     private List<Integer> list;
@@ -12,13 +14,8 @@ public class NRandoms {
         list = new ArrayList<Integer>(n);
         Date date = new Date();
         Random random = new Random(date.getTime());
-        for (int i = 0; i < n; i++) {
-            int negative_flag = 1;
-            if (random.nextInt(2) == 0) {
-                negative_flag = -1;
-            }
-            list.add(negative_flag * random.nextInt(Integer.MAX_VALUE));
-        }
+        IntStream intStream = random.ints(-1, Integer.MAX_VALUE);
+        list = intStream.limit(n).boxed().collect(Collectors.toList());
     }
 
     public void printSquares() {
@@ -27,12 +24,16 @@ public class NRandoms {
                 if (tmp < 0) {
                     throw new NegativeException(tmp + " less than 0");
                 }
-                if (Double.compare(tmp, Math.pow(Math.floor(Math.sqrt(tmp)), 2)) == 0) {
+                if (compareIntIsSquare(tmp)) {
                     System.out.print(tmp + " ");
                 }
             } catch (NegativeException e) {
                 //System.out.println(e.getMessage());
             }
         }
+    }
+    private boolean compareIntIsSquare(int a) {
+        int tmp = (int) Math.sqrt(a);
+        return tmp * tmp == a;
     }
 }

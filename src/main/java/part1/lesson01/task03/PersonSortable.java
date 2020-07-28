@@ -4,5 +4,5 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface PersonSortable {
-    void sortPersons(List<Person> list);
+    List<Person> sortPersons(List<Person> list);
 }
