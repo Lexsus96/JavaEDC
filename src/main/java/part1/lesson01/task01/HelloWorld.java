@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HelloWorld {
-    public static void throwNullPointerException() throws NullPointerException {
+    public static void throwNullPointerException(){
         String s = null;
         System.out.println(s.length());
     }
-    public static void throwArrayIndexOutOfBoundsException() throws ArrayIndexOutOfBoundsException {
+    public static void throwArrayIndexOutOfBoundsException(){
         int[] arr = new int[1];
         System.out.println(arr[1]);
     }

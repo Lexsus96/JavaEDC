@@ -18,18 +18,14 @@ public class NRandoms {
         list = intStream.limit(n).boxed().collect(Collectors.toList());
     }
 
-    public void printSquares() {
+    public void printSquares() throws NegativeException {
         for(Integer tmp: list) {
-            try {
                 if (tmp < 0) {
                     throw new NegativeException(tmp + " less than 0");
                 }
                 if (compareIntIsSquare(tmp)) {
                     System.out.print(tmp + " ");
                 }
-            } catch (NegativeException e) {
-                //System.out.println(e.getMessage());
-            }
         }
     }
     private boolean compareIntIsSquare(int a) {

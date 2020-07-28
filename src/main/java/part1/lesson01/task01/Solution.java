@@ -15,7 +15,7 @@ public class Solution {
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(e.getClass().getSimpleName());
         }
-
+        System.out.println("Hello, World!");
         HelloWorld.throwIOException();
     }
 }

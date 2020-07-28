@@ -11,6 +11,8 @@ public class Solution {
             int n = Integer.parseInt(bufferedReader.readLine());
             NRandoms nRandoms = new NRandoms(n);
             nRandoms.printSquares();
+        } catch (NegativeException e) {
+            System.out.println(e.getClass().getSimpleName());
         }
     }
 }

@@ -7,6 +7,9 @@ import java.util.List;
 public class PersonComparatorSort implements PersonSortable {
     @Override
     public List<Person> sortPersons(List<Person> list) {
+        if (list == null) {
+            return null;
+        }
         List<Person> sortedList = new ArrayList<>(list);
         sortedList.sort(Person::compareTo);
         return sortedList;

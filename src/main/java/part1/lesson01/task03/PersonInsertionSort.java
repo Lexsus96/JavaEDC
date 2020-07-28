@@ -6,6 +6,9 @@ import java.util.List;
 public class PersonInsertionSort implements PersonSortable {
     @Override
     public List<Person> sortPersons(List<Person> list) {
+        if (list == null) {
+            return null;
+        }
         List<Person> sortedList = new ArrayList<>(list);
         for (int i = 1; i < sortedList.size(); i++) {
             Person current = sortedList.get(i);

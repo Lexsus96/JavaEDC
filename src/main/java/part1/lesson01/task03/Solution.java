@@ -9,6 +9,9 @@ public class Solution {
     private static final int MAX_AGE = 100;
 
     public static List<Person> generateListOfPersons(int n) throws EqualPersonException, IllegalArgumentException{
+        if (n < 0) {
+            throw new IllegalArgumentException("n should be bigger than 0!\n");
+        }
         ArrayList<Person> list = new ArrayList<>(n);
         Random random = new Random(new Date().getTime());
         for (int i = 0; i < n; i++) {
