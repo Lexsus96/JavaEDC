@@ -16,6 +16,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class Lesson01Test {
+    static final List<Person> list = new ArrayList() {{
+        add(new Person("Person1", 10, Sex.WOMAN));
+        add(new Person("Person1", 10, Sex.MAN));
+        add(new Person("Person2", 10, Sex.MAN));
+        add(new Person("Person2", 100, Sex.MAN));
+        add(new Person("Person1", 100, Sex.WOMAN));
+    }};
+    static final List<Person> answer = new ArrayList() {{
+        add(new Person("Person2", 100, Sex.MAN));
+        add(new Person("Person1", 10, Sex.MAN));
+        add(new Person("Person2", 10, Sex.MAN));
+        add(new Person("Person1", 100, Sex.WOMAN));
+        add(new Person("Person1", 10, Sex.WOMAN));
+    }};
     @BeforeAll
     static void setup() {
         System.out.println("[START]");
@@ -95,47 +109,17 @@ public class Lesson01Test {
     @DisplayName("Task03PersonComparatorSort")
     @Test
     public void testPersonComparatorSort() {
-        List<Person> list = new ArrayList<>();
-        list.add(new Person("Person1", 10, Sex.WOMAN));
-        list.add(new Person("Person1", 10, Sex.MAN));
-        list.add(new Person("Person2", 10, Sex.MAN));
-        list.add(new Person("Person2", 100, Sex.MAN));
-        list.add(new Person("Person1", 100, Sex.WOMAN));
-
         PersonSortable personSortable = new PersonComparatorSort();
-        list = personSortable.sortPersons(list);
-
-        List<Person> answer = new ArrayList<>();
-        answer.add(new Person("Person2", 100, Sex.MAN));
-        answer.add(new Person("Person1", 10, Sex.MAN));
-        answer.add(new Person("Person2", 10, Sex.MAN));
-        answer.add(new Person("Person1", 100, Sex.WOMAN));
-        answer.add(new Person("Person1", 10, Sex.WOMAN));
-
-        Assertions.assertEquals(answer, list);
+        List<Person> sortedList = personSortable.sortPersons(list);
+        Assertions.assertEquals(answer, sortedList);
     }
 
     @DisplayName("Task03PersonInsertionSort")
     @Test
     public void testPersonInsertionSort() {
-        List<Person> list = new ArrayList<>();
-        list.add(new Person("Person1", 10, Sex.WOMAN));
-        list.add(new Person("Person1", 10, Sex.MAN));
-        list.add(new Person("Person2", 10, Sex.MAN));
-        list.add(new Person("Person2", 100, Sex.MAN));
-        list.add(new Person("Person1", 100, Sex.WOMAN));
-
         PersonSortable personSortable = new PersonInsertionSort();
-        list = personSortable.sortPersons(list);
-
-        List<Person> answer = new ArrayList<>();
-        answer.add(new Person("Person2", 100, Sex.MAN));
-        answer.add(new Person("Person1", 10, Sex.MAN));
-        answer.add(new Person("Person2", 10, Sex.MAN));
-        answer.add(new Person("Person1", 100, Sex.WOMAN));
-        answer.add(new Person("Person1", 10, Sex.WOMAN));
-
-        Assertions.assertEquals(answer, list);
+        List<Person> sortedList = personSortable.sortPersons(list);
+        Assertions.assertEquals(answer, sortedList);
     }
 
     @DisplayName("Task03PersonInsertionSortNULL")

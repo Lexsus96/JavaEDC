@@ -32,4 +32,12 @@ public class NRandoms {
         int tmp = (int) Math.sqrt(a);
         return tmp * tmp == a;
     }
+
+    public List<Integer> getList() {
+        return list;
+    }
+
+    public void setList(List<Integer> list) {
+        this.list = list;
+    }
 }
