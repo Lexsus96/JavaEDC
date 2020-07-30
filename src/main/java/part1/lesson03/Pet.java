@@ -17,7 +17,12 @@ public class Pet {
         this.person = person;
         this.weight = weight;
     }
-
+    public Pet(Pet pet) {
+        this.uid = pet.uid;
+        this.name = pet.name;
+        this.person = new Person(pet.person.getName(), pet.person.getAge(), pet.person.getSex());
+        this.weight = pet.weight;
+    }
     public int getUid() {
         return uid;
     }

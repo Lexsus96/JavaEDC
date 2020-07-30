@@ -4,9 +4,24 @@ import part1.lesson01.task03.Person;
 
 import java.util.*;
 
-public class CardFilePet {
+public class CardFilePet implements Cloneable{
     SortedMap<Integer, Pet> map = new TreeMap<>();
 
+    public CardFilePet() {
+
+    }
+    public CardFilePet (CardFilePet cardFilePet) {
+        for (Pet pet: cardFilePet.map.values()) {
+            try {
+                this.addPet(new Pet(pet));
+            } catch (DuplicatePetException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public Pet getPet(int id) {
+        return map.get(id);
+    }
     public void addPet(Pet pet) throws DuplicatePetException{
         if (map.containsKey(pet.getUid())) {
             throw new DuplicatePetException(pet + " already exists!");
@@ -55,4 +70,5 @@ public class CardFilePet {
         list.sort(Comparator.comparing(Pet::getWeight));
         return list;
     }
+
 }
