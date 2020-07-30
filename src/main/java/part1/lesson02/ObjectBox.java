@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ObjectBox<T> {
-    List<T> list = new ArrayList<>();
+    private List<T> list = new ArrayList<>();
 
     public void addObject(T item) {
         list.add(item);
