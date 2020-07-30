@@ -13,7 +13,7 @@ public class ObjectBox<T> {
         list.remove(item);
     }
     public void dump() {
-        System.out.println(list);
+        System.out.print(list);
     }
 
     public List<T> getList() {
