@@ -9,9 +9,9 @@ import java.util.Map;
 import java.util.Objects;
 
 public class MathBox<T extends Number> extends ObjectBox<T>{
-    Calculator<T> calculator;
+    private Calculator<T> calculator;
 
-    Map<Class<?>, Calculator<?>> map = new HashMap<>(){{
+    private Map<Class<?>, Calculator<?>> map = new HashMap<>(){{
         put(Integer.class, new IntegerCalculator());
         put(Double.class, new DoubleCalculator());
         put(Float.class, new FloatCalculator());
@@ -19,7 +19,7 @@ public class MathBox<T extends Number> extends ObjectBox<T>{
         put(Short.class, new ShortCalculator());
         put(Byte.class, new ByteCalculator());
     }};
-
+    
     public MathBox(T[] arr) {
         if (arr.length != 0) {
             Class<T> clazz = (Class<T>) arr[0].getClass();
@@ -66,5 +66,13 @@ public class MathBox<T extends Number> extends ObjectBox<T>{
     @Override
     public String toString() {
         return getList().toString();
+    }
+
+    public Calculator<T> getCalculator() {
+        return calculator;
+    }
+
+    public void setCalculator(Calculator<T> calculator) {
+        this.calculator = calculator;
     }
 }
