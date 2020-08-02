@@ -4,8 +4,8 @@ import part1.lesson01.task03.Person;
 
 import java.util.*;
 
-public class CardFilePet implements Cloneable{
-    SortedMap<Integer, Pet> map = new TreeMap<>();
+public class CardFilePet {
+    Map<Integer, Pet> map = new HashMap<>();
 
     public CardFilePet() {
 
@@ -36,7 +36,6 @@ public class CardFilePet implements Cloneable{
     public void editPet(int uid, int weight) {
         Pet pet = map.get(uid);
         pet.setWeight(weight);
-
     }
     public void editPet(int uid, Person person) {
         Pet pet = map.get(uid);
