@@ -6,29 +6,29 @@ import part1.lesson01.task03.Person;
 import java.util.Objects;
 
 public class Pet {
-    private int uid;
+    private int UUID;
     private String name;
     private Person person;
-    private int weight;
+    private double weight;
 
-    public Pet(int uid, String name, Person person, int weight) {
-        this.uid = uid;
+    public Pet(int UUID, String name, Person person, double weight) {
+        this.UUID = UUID;
         this.name = name;
         this.person = person;
         this.weight = weight;
     }
     public Pet(Pet pet) {
-        this.uid = pet.uid;
+        this.UUID = pet.UUID;
         this.name = pet.name;
         this.person = new Person(pet.person.getName(), pet.person.getAge(), pet.person.getSex());
         this.weight = pet.weight;
     }
     public int getUid() {
-        return uid;
+        return UUID;
     }
 
     public void setUid(int uid) {
-        this.uid = uid;
+        this.UUID = uid;
     }
 
     public String getName() {
@@ -47,11 +47,11 @@ public class Pet {
         this.person = person;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
@@ -60,19 +60,16 @@ public class Pet {
         if (this == o) return true;
         if (!(o instanceof Pet)) return false;
         Pet pet = (Pet) o;
-        return uid == pet.uid &&
-                weight == pet.weight &&
-                Objects.equals(name, pet.name) &&
-                Objects.equals(person, pet.person);
+        return UUID == pet.UUID;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uid, name, person, weight);
+        return Objects.hash(UUID);
     }
 
     @Override
     public String toString() {
-        return String.format("{UID: %s; Name: %s; Person: {%s}; Weight: %d}", uid, name, person, weight);
+        return String.format("{UID: %s; Name: %s; Person: {%s}; Weight: %f}", UUID, name, person, weight);
     }
 }
