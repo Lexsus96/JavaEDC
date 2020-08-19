@@ -24,12 +24,13 @@ public class Lesson03Test {
         }
     }};
 
-    private final static String sortedPetsByWeight = "[{UID: 2; Name: Bhappi; Person: {Volodya 10 WOMAN}; Weight: 2,000000}, {UID: 1; Name: Chappi; Person: {Volodya 10 MAN}; Weight: 10,000000}, {UID: 3; Name: Ahappi; Person: {Aolody 10 WOMAN}; Weight: 13,000000}]";
-    private final static String sortedPetsByName = "[{UID: 3; Name: Ahappi; Person: {Aolody 10 WOMAN}; Weight: 13,000000}, {UID: 2; Name: Bhappi; Person: {Volodya 10 WOMAN}; Weight: 2,000000}, {UID: 1; Name: Chappi; Person: {Volodya 10 MAN}; Weight: 10,000000}]";
-    private final static String sortedPetsByPerson = "[{UID: 1; Name: Chappi; Person: {Volodya 10 MAN}; Weight: 10,000000}, {UID: 3; Name: Ahappi; Person: {Aolody 10 WOMAN}; Weight: 13,000000}, {UID: 2; Name: Bhappi; Person: {Volodya 10 WOMAN}; Weight: 2,000000}]";
-    private final static String findFirstPetByName = "{UID: 1; Name: Chappi; Person: {Volodya 10 MAN}; Weight: 10,000000}";
-    private final static String editedPet = "{UID: 1; Name: Chappi2; Person: {Volodya 10 WOMAN}; Weight: 15,000000}";
-    private final static String addPet = "[{UID: 4; Name: 1; Person: {1 1 MAN}; Weight: 1,000000}, {UID: 2; Name: Bhappi; Person: {Volodya 10 WOMAN}; Weight: 2,000000}, {UID: 1; Name: Chappi; Person: {Volodya 10 MAN}; Weight: 10,000000}, {UID: 3; Name: Ahappi; Person: {Aolody 10 WOMAN}; Weight: 13,000000}]";
+    private final static String sortedPetsByWeight = "[{UID: 2; Name: Bhappi; Person: {Volodya 10 WOMAN}; Weight: 2,000000; Type: Cat}, {UID: 1; Name: Chappi; Person: {Volodya 10 MAN}; Weight: 10,000000; Type: Dog}, {UID: 3; Name: Ahappi; Person: {Aolody 10 WOMAN}; Weight: 13,000000; Type: Bear}]";
+    private final static String sortedPetsByName = "[{UID: 3; Name: Ahappi; Person: {Aolody 10 WOMAN}; Weight: 13,000000; Type: Bear}, {UID: 2; Name: Bhappi; Person: {Volodya 10 WOMAN}; Weight: 2,000000; Type: Cat}, {UID: 1; Name: Chappi; Person: {Volodya 10 MAN}; Weight: 10,000000; Type: Dog}]";
+    private final static String sortedPetsByPerson = "[{UID: 1; Name: Chappi; Person: {Volodya 10 MAN}; Weight: 10,000000; Type: Dog}, {UID: 3; Name: Ahappi; Person: {Aolody 10 WOMAN}; Weight: 13,000000; Type: Bear}, {UID: 2; Name: Bhappi; Person: {Volodya 10 WOMAN}; Weight: 2,000000; Type: Cat}]";
+    private final static String sortedList = "[{UID: 3; Name: Ahappi; Person: {Aolody 10 WOMAN}; Weight: 13,000000; Type: Bear}, {UID: 1; Name: Chappi; Person: {Volodya 10 MAN}; Weight: 10,000000; Type: Dog}, {UID: 2; Name: Bhappi; Person: {Volodya 10 WOMAN}; Weight: 2,000000; Type: Cat}]";
+    private final static String findFirstPetByName = "{UID: 1; Name: Chappi; Person: {Volodya 10 MAN}; Weight: 10,000000; Type: Dog}";
+    private final static String editedPet = "{UID: 1; Name: Chappi2; Person: {Volodya 10 WOMAN}; Weight: 15,000000; Type: Dog}";
+    private final static String addPet = "[{UID: 4; Name: 1; Person: {1 1 MAN}; Weight: 1,000000; Type: Dog}, {UID: 2; Name: Bhappi; Person: {Volodya 10 WOMAN}; Weight: 2,000000; Type: Cat}, {UID: 1; Name: Chappi; Person: {Volodya 10 MAN}; Weight: 10,000000; Type: Dog}, {UID: 3; Name: Ahappi; Person: {Aolody 10 WOMAN}; Weight: 13,000000; Type: Bear}]";
     private final static String name = "Chappi";
 
     @BeforeAll
@@ -105,7 +106,12 @@ public class Lesson03Test {
         }
         assertEquals(addPet, tmp.sortPetsByWeight().toString());
     }
-
+    @Test
+    @DisplayName("TestSortedList")
+    void testSortedList() {
+        CardFilePet tmp = new CardFilePet(cardFilePet);
+        assertEquals(sortedList, tmp.getSortedList().toString());
+    }
 
 
 }

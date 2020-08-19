@@ -1,13 +1,13 @@
 package part1.lesson03;
 
 import part1.lesson01.task03.Person;
-
 import java.util.*;
-import java.util.function.Function;
 
 public class CardFilePet {
     private Map<Integer, Pet> map = new HashMap<>();
-    Map<String, List<Pet>> nameMap = new HashMap<>();
+    private Map<String, List<Pet>> nameMap = new HashMap<>();
+    private Set<Pet> set = new TreeSet<>();
+
     public CardFilePet() {
 
     }
@@ -25,10 +25,14 @@ public class CardFilePet {
     }
 
     public void addPet(Pet pet) {
-        if (map.containsKey(pet.getUid())) {
+        if (map.containsKey(pet.getUUID())) {
             throw new DuplicatePetException(pet + " already exists!");
         }
-        map.put(pet.getUid(), pet);
+        map.put(pet.getUUID(), pet);
+        set.add(pet);
+        addPetToNameMap(pet);
+    }
+    private void addPetToNameMap(Pet pet) {
         if (nameMap.containsKey(pet.getName())) {
             nameMap.get(pet.getName()).add(pet);
         } else {
@@ -39,29 +43,42 @@ public class CardFilePet {
     }
     public void editPet(int uid, String name) {
         Pet pet = map.get(uid);
+        List<Pet> nameList = nameMap.get(pet.getName());
+        nameList.remove(pet);
+        set.remove(pet);
         pet.setName(name);
+        set.add(pet);
+        addPetToNameMap(pet);
     }
 
     public void editPet(int uid, int weight) {
         Pet pet = map.get(uid);
+        List<Pet> nameList = nameMap.get(pet.getName());
+        nameList.remove(pet);
+        set.remove(pet);
         pet.setWeight(weight);
+        set.add(pet);
+        addPetToNameMap(pet);
     }
     public void editPet(int uid, Person person) {
         Pet pet = map.get(uid);
+        List<Pet> nameList = nameMap.get(pet.getName());
+        nameList.remove(pet);
+        set.remove(pet);
         pet.setPerson(person);
+        set.add(pet);
+        addPetToNameMap(pet);
     }
     public Pet findFirstPetByName(String name) {
-        List<Pet> list = nameMap.getOrDefault(name, null);
-        if (list == null) {
-            return null;
-        }
-        Optional<Pet> optionalPet= list.stream().findAny();
-        return optionalPet.orElse(null);
+        return nameMap.get(name).stream().findAny().orElse(null);
     }
     public List<Pet> sort(Comparator<Pet> comparator) {
         List<Pet> list = new ArrayList<>(map.values());
         list.sort(comparator);
         return list;
+    }
+    public List<Pet> getSortedList() {
+        return new ArrayList<>(set);
     }
     public List<Pet> sortPetsByPerson() {
         List<Pet> list = new ArrayList<>(map.values());
