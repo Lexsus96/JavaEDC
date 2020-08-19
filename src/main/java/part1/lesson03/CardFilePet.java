@@ -45,7 +45,6 @@ public class CardFilePet {
         Pet pet = map.get(uid);
         List<Pet> nameList = nameMap.get(pet.getName());
         nameList.remove(pet);
-        set.remove(pet);
         pet.setName(name);
         set.add(pet);
         addPetToNameMap(pet);
@@ -53,21 +52,13 @@ public class CardFilePet {
 
     public void editPet(int uid, int weight) {
         Pet pet = map.get(uid);
-        List<Pet> nameList = nameMap.get(pet.getName());
-        nameList.remove(pet);
-        set.remove(pet);
         pet.setWeight(weight);
         set.add(pet);
-        addPetToNameMap(pet);
     }
     public void editPet(int uid, Person person) {
         Pet pet = map.get(uid);
-        List<Pet> nameList = nameMap.get(pet.getName());
-        nameList.remove(pet);
-        set.remove(pet);
         pet.setPerson(person);
         set.add(pet);
-        addPetToNameMap(pet);
     }
     public Pet findFirstPetByName(String name) {
         return nameMap.get(name).stream().findAny().orElse(null);
