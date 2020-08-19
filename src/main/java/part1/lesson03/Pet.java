@@ -10,18 +10,21 @@ public class Pet {
     private String name;
     private Person person;
     private double weight;
+    private PetType petType;
 
-    public Pet(int UUID, String name, Person person, double weight) {
+    public Pet(int UUID, String name, Person person, double weight, PetType petType) {
         this.UUID = UUID;
         this.name = name;
         this.person = person;
         this.weight = weight;
+        this.petType = petType;
     }
     public Pet(Pet pet) {
         this.UUID = pet.UUID;
         this.name = pet.name;
         this.person = new Person(pet.person.getName(), pet.person.getAge(), pet.person.getSex());
         this.weight = pet.weight;
+        this.petType = pet.petType;
     }
     public int getUid() {
         return UUID;
@@ -53,6 +56,22 @@ public class Pet {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    public int getUUID() {
+        return UUID;
+    }
+
+    public void setUUID(int UUID) {
+        this.UUID = UUID;
+    }
+
+    public PetType getPetType() {
+        return petType;
+    }
+
+    public void setPetType(PetType petType) {
+        this.petType = petType;
     }
 
     @Override
