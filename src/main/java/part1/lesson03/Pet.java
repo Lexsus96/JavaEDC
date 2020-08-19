@@ -5,7 +5,7 @@ import part1.lesson01.task03.Person;
 
 import java.util.Objects;
 
-public class Pet {
+public class Pet implements Comparable<Pet>{
     private int UUID;
     private String name;
     private Person person;
@@ -25,13 +25,6 @@ public class Pet {
         this.person = new Person(pet.person.getName(), pet.person.getAge(), pet.person.getSex());
         this.weight = pet.weight;
         this.petType = pet.petType;
-    }
-    public int getUid() {
-        return UUID;
-    }
-
-    public void setUid(int uid) {
-        this.UUID = uid;
     }
 
     public String getName() {
@@ -89,6 +82,23 @@ public class Pet {
 
     @Override
     public String toString() {
-        return String.format("{UID: %s; Name: %s; Person: {%s}; Weight: %f}", UUID, name, person, weight);
+        return String.format("{UID: %s; Name: %s; Person: {%s}; Weight: %f; Type: %s}", UUID, name, person, weight, petType);
+    }
+
+    @Override
+    public int compareTo(Pet pet) {
+        if (this.petType == pet.petType) {
+            if (this.name.equals(pet.name)) {
+                return Double.compare(this.weight, pet.weight);
+            } else {
+                return this.name.compareTo(pet.name);
+            }
+        } else {
+            if (this.petType == PetType.Cat || this.petType == PetType.Dog && pet.petType == PetType.Bear) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
     }
 }
