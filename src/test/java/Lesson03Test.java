@@ -8,6 +8,7 @@ import part1.lesson01.task03.Sex;
 import part1.lesson03.CardFilePet;
 import part1.lesson03.DuplicatePetException;
 import part1.lesson03.Pet;
+import part1.lesson03.PetType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -15,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class Lesson03Test {
     private static final CardFilePet cardFilePet = new CardFilePet(){{
         try {
-            addPet(new Pet(1, "Chappi", new Person("Volodya", 10, Sex.MAN), 10.0));
-            addPet(new Pet(2, "Bhappi", new Person("Volodya", 10, Sex.WOMAN), 2.0));
-            addPet(new Pet(3, "Ahappi", new Person("Aolody", 10, Sex.WOMAN), 13.0));
+            addPet(new Pet(1, "Chappi", new Person("Volodya", 10, Sex.MAN), 10.0, PetType.Dog));
+            addPet(new Pet(2, "Bhappi", new Person("Volodya", 10, Sex.WOMAN), 2.0, PetType.Cat));
+            addPet(new Pet(3, "Ahappi", new Person("Aolody", 10, Sex.WOMAN), 13.0, PetType.Bear));
         } catch (DuplicatePetException e) {
             e.printStackTrace();
         }
@@ -47,7 +48,7 @@ public class Lesson03Test {
         CardFilePet tmp = new CardFilePet(cardFilePet);
         boolean duplicate = false;
         try {
-            tmp.addPet(new Pet(3, "Ahappi", new Person("Aolody", 10, Sex.WOMAN), 13.0));
+            tmp.addPet(new Pet(3, "Ahappi", new Person("Aolody", 10, Sex.WOMAN), 13.0, PetType.Bear));
         } catch (DuplicatePetException e) {
             duplicate = true;
             assertEquals("DuplicatePetException", e.getClass().getSimpleName() );
@@ -98,7 +99,7 @@ public class Lesson03Test {
     void testAddPet() {
         CardFilePet tmp = new CardFilePet(cardFilePet);
         try {
-            tmp.addPet(new Pet(4, "1", new Person("1", 1, Sex.MAN), 1));
+            tmp.addPet(new Pet(4, "1", new Person("1", 1, Sex.MAN), 1, PetType.Dog));
         } catch (DuplicatePetException e) {
             System.out.println(e.getMessage());
         }
