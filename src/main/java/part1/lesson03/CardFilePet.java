@@ -1,7 +1,11 @@
 package part1.lesson03;
 
 import part1.lesson01.task03.Person;
+import part1.lesson01.task03.Sex;
+
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class CardFilePet {
     private Map<Integer, Pet> map = new HashMap<>();
@@ -90,5 +94,15 @@ public class CardFilePet {
 
     public  Map<Integer, Pet> getMap() {
         return map;
+    }
+
+    public double getAverageAgeOfPerson() {
+        return map.values().stream().map(Pet::getPerson).distinct().mapToInt(Person::getAge).average().orElse(-1);
+    }
+    public List<Person> getPersonListOfType(Sex sex){
+        return map.values().stream().map(Pet::getPerson).distinct().filter(person -> person.getSex().equals(sex)).collect(Collectors.toList());
+    }
+    public long countPetOfType(PetType petType){
+        return map.values().stream().filter(pet -> pet.getPetType() == petType).count();
     }
 }

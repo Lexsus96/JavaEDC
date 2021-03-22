@@ -7,8 +7,8 @@ public class Solution {
     private final static CardFilePet CARD_FILE_PET = new CardFilePet(){{
         try {
             addPet(new Pet(1, "Chappi", new Person("Volodya", 10, Sex.MAN), 10, PetType.Bear));
-            addPet(new Pet(2, "Bhappi", new Person("Volodya", 10, Sex.WOMAN), 2, PetType.Cat));
-            addPet(new Pet(3, "Ahappi", new Person("Aolody", 10, Sex.WOMAN), 13, PetType.Dog));
+            addPet(new Pet(2, "Bhappi", new Person("Volodya", 20, Sex.WOMAN), 2, PetType.Cat));
+            addPet(new Pet(3, "Ahappi", new Person("Aolody", 40, Sex.WOMAN), 13, PetType.Dog));
         } catch (DuplicatePetException e) {
             e.printStackTrace();
         }
@@ -21,6 +21,9 @@ public class Solution {
         System.out.println("findPet(Chappi): " + CARD_FILE_PET.findFirstPetByName("Chappi"));
         CARD_FILE_PET.editPet(1, "Champ");
         System.out.println("New name: " + CARD_FILE_PET.getMap().get(1).getName());
+        System.out.println(CARD_FILE_PET.getAverageAgeOfPerson());
+        System.out.println(CARD_FILE_PET.getPersonListOfType(Sex.WOMAN));
+        System.out.println(CARD_FILE_PET.countPetOfType(PetType.Bear));
 
         try {
             CARD_FILE_PET.addPet(new Pet(3, "Ahappi", new Person("Aolody", 10, Sex.WOMAN), 13, PetType.Dog));
