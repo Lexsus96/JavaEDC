@@ -22,9 +22,7 @@ public class FileProcessor {
     public int readWordsFromFile(Path filePath) throws IOException {
         List<String> lines = Files.readAllLines(filePath);
         for (String s: lines) {
-            s = s.replaceAll("[.,/#!$%^&*;:{}=\\-_`~()—]", " ");
-            s = s.trim().replaceAll(" +", " ");
-            List<String> list = Arrays.asList(s.split(" "));
+            List<String> list = Arrays.asList(s.split("[\\p{Space}\\p{Punct}]+"));
             words.addAll(list.stream().map(String::toLowerCase).collect(Collectors.toList()));
         }
         return words.size();
